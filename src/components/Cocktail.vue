@@ -3,10 +3,10 @@
         <div class="name">{{name}}</div>
 
         <div class="parts">
-            <div class="part-wheel" v-for="ingredient in ingredients" :key="ingredient.name">
-                <!-- <div class="part-wheel">
-                </div>   -->
-                <!-- {{ingredient.parts}} -->
+            <div v-for="ingredient in ingredients" :key="ingredient.name">
+                <Parts :num_parts="ingredient.parts" />
+            <!-- <Parts :num_parts="ingredient.parts" v-for="ingredient in ingredients" :key="ingredient.name" /> -->
+                
             </div>
         </div>
             
@@ -20,17 +20,28 @@
 </template>
 
 <script>
+import Parts from './Parts.vue'
+
 export default {
     name: 'Cocktail',
     props: {
         name: String,
         ingredients: Array
+    },
+    computed: {
+        propArray: function(){
+            return new Array(this)
+        }
+    },
+    components: {
+        Parts
     }
 }
 </script>
 
 <style scoped>
 .cocktail {
+    margin: 12px 0;
     display: grid;
     /* grid-template-columns: 25% 25% 25% 25%; */
     grid-template-areas:
@@ -41,6 +52,9 @@ export default {
 .parts {
     grid-area: parts;
 }
+.parts>div{
+    display: inline-block;
+}
 .ingredients {
     grid-area: ingredients;
     justify-self: start;
@@ -50,15 +64,6 @@ export default {
     justify-self: start;
 }
 .ingredient {
-    display: inline-block;
-    margin-right: 15px;
-}
-.part-wheel {
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    border-color: black;
-    background-color: black;
     display: inline-block;
     margin-right: 15px;
 }

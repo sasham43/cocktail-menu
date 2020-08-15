@@ -26,9 +26,38 @@ export default {
                             parts: 1
                         },
                         {
-                            name: 'Angostura bitters',
-                            parts: 'dash'
+                            name: 'Angostura',
+                            parts: 0
                         }
+                    ]
+                },
+                {
+                    name: 'La Lousiane',
+                    ingredients: [
+                        {
+                            name: 'Rye',
+                            parts: 2
+                        },
+                        {
+                            name: 'Sweet Vermouth',
+                            parts: .5
+                        },
+                        {
+                            name: 'Benedictine',
+                            parts: .25
+                        },
+                        {
+                            name: 'Absinthe',
+                            parts: 0
+                        },
+                        {
+                            name: 'Angostura',
+                            parts: 0
+                        },
+                        {
+                            name: 'Peychauds',
+                            parts: 0
+                        },
                     ]
                 }
             ]
