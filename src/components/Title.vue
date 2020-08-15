@@ -13,7 +13,6 @@
 <style scoped>
 .title {
     font-size: 35px;
-    
     text-align: center;
     margin-bottom: 50px;
 }
