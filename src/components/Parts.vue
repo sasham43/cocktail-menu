@@ -4,7 +4,9 @@
             <div v-for="part in partArray" :key="part.id" class="part-wheel">
                 <!-- p -->
             </div>
+            {{remainder}}
             <span>|</span>
+            
         </div>            
     </div>
 </template>
@@ -24,12 +26,18 @@ export default {
                 })
             }
             return parts
-            // console.log(this.num_parts, new Array(this.num_parts))
-            // return new Array(this.num_parts).map((p,i)=>{
-            //     console.log('p', p,i)
-            //     return {id:i}
-            //     // part: 
-            // })
+        },
+        remainder: function(){
+            if(this.num_parts.toString().includes('.')){
+                // var push = false
+                // var remainder_array = []
+                var remainder = this.num_parts.toString().split('.')[1]
+                // console.log('remainder array', remainder_array, this.num_parts.toString().split('.'))
+                var parsed = parseFloat(`.${remainder}`)
+                return parsed
+            } else {
+                return null
+            }
         }
     }
 }
