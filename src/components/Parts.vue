@@ -4,7 +4,10 @@
             <div v-for="part in partArray" :key="part.id" class="part-wheel">
                 <!-- p -->
             </div>
-            {{remainder}}
+            <!-- {{remainder}} -->
+            <div class="remainder-wheel" :class="{quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5}">
+
+            </div>
             <span>|</span>
             
         </div>            
@@ -59,5 +62,30 @@ export default {
     background-color: black;
     display: inline-block;
     margin-right: 15px;
+}
+.remainder-wheel {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: black;
+    margin-right: 15px;
+}
+.halfCircleLeft {
+     /* height:90px;
+     width:45px; */
+     height: 10px;
+     width: 5px;
+     border-radius: 90px 0 0 90px;
+     background:black;
+}
+.quarterCircleBottomRight{
+     /* width:100px; 
+     height:100px;  */
+     width: 5px;
+     height: 5px;
+     border:1px solid #000; 
+     background: black;
+     border-radius: 0 0 0 90px;
 }
 </style>
