@@ -59,6 +59,27 @@ export default {
                             parts: 0
                         },
                     ]
+                },
+                {
+                    name: 'Last Word',
+                    ingredients: [
+                        {
+                            name: 'Gin',
+                            parts: 1
+                        },
+                        {
+                            name: 'Lime Juice',
+                            parts: 1
+                        },
+                        {
+                            name: 'Maraschino Liquer',
+                            parts: 1
+                        },
+                        {
+                            name: 'Green Chartreuse',
+                            parts: 1
+                        },
+                    ]
                 }
             ]
         }

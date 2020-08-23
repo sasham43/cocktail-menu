@@ -5,7 +5,7 @@
                 <!-- p -->
             </div>
             <!-- {{remainder}} -->
-            <div class="remainder-wheel" :class="{quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5}">
+            <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5}">
 
             </div>
             <span v-if="showLastPart">|</span>
@@ -72,7 +72,8 @@ export default {
     border-radius: 50%;
     width: 10px;
     height: 10px;
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     background-color: black;
     margin-right: 15px;
 }
@@ -92,5 +93,8 @@ export default {
      border:1px solid #000; 
      background: black;
      border-radius: 0 0 0 90px;
+}
+.show {
+    display: inline-block;
 }
 </style>
