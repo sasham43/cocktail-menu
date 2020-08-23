@@ -8,7 +8,7 @@
             <div class="remainder-wheel" :class="{quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5}">
 
             </div>
-            <span>|</span>
+            <span v-if="showLastPart">|</span>
             
         </div>            
     </div>
@@ -18,7 +18,9 @@
 export default {
     name: 'Parts',
     props: {
-        num_parts: Number
+        num_parts: Number,
+        index: Number,
+        length: Number
     },
     computed: {
         partArray: function(){
@@ -41,6 +43,9 @@ export default {
             } else {
                 return null
             }
+        },
+        showLastPart: function(){
+            return this.index < (this.length - 1)
         }
     }
 }

@@ -3,8 +3,8 @@
         <div class="name">{{name}}</div>
 
         <div class="parts">
-            <div v-for="ingredient in ingredients" :key="ingredient.name">
-                <Parts :num_parts="ingredient.parts" />
+            <div v-for="(ingredient, index) in ingredients" :key="ingredient.name">
+                <Parts :num_parts="ingredient.parts" :index="index" :length="partLength" />
             <!-- <Parts :num_parts="ingredient.parts" v-for="ingredient in ingredients" :key="ingredient.name" /> -->
                 
             </div>
@@ -31,6 +31,9 @@ export default {
     computed: {
         propArray: function(){
             return new Array(this)
+        },
+        partLength: function(){
+            return this.ingredients.filter(i=>i.parts > 0).length
         }
     },
     components: {
