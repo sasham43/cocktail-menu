@@ -81,7 +81,54 @@ export default {
                         },
                     ]
                 }
+            ],
+            stock: [
+                {
+                    type: 'Gin',
+                    in_stock: true,
+                },
+                {
+                    type: 'Rye',
+                    in_stock: true,
+                },
+                {
+                    type: 'Sweet Vermouth',
+                    in_stock: true,
+                },
+                {
+                    type: 'Green Chartreuse',
+                    in_stock: true,
+                },
+                {
+                    type: 'Angostura',
+                    in_stock: true,
+                },
+                {
+                    type: 'Benedictine',
+                    in_stock: true,
+                },
+                {
+                    type: 'Peychauds',
+                    in_stock: true,
+                },
+                {
+                    type: 'Angostura',
+                    in_stock: true,
+                },
+                {
+                    type: 'Absinthe',
+                    in_stock: true,
+                },
+                {
+                    type: 'Lime Juice',
+                    in_stock: true,
+                }
             ]
+        }
+    },
+    computed: {
+        ingredientsInStock: function(){
+            return this.stock.filter(s=>s.in_stock)
         }
     },
     components: {
