@@ -46,6 +46,10 @@ const store = new Vuex.Store({
             {
                 type: 'Lime Juice',
                 in_stock: true,
+            },
+            {
+                type: 'Maraschino Liquer',
+                in_stock: true
             }
         ],
         cocktails: [

@@ -4,16 +4,13 @@
 
         <div class="parts">
             <div v-for="(ingredient, index) in ingredients" :key="ingredient.name">
-                <Parts :num_parts="ingredient.parts" :index="index" :length="partLength" />
-            <!-- <Parts :num_parts="ingredient.parts" v-for="ingredient in ingredients" :key="ingredient.name" /> -->
-                
+                <Parts :num_parts="ingredient.parts" :index="index" :length="partLength" />                
             </div>
         </div>
             
         <div class="ingredients">
             <div class="ingredient" v-for="ingredient in ingredients" :key="ingredient.name">
-                {{ingredient.name}}    
-                <!-- {{ingredient.parts}} -->
+                <span class="ingredient-name" :class="{inStock: inStock(ingredient.name)}">{{ingredient.name}}</span>
             </div>
         </div>
     </div>
@@ -21,6 +18,7 @@
 
 <script>
 import Parts from './Parts.vue'
+import {mapGetters} from 'vuex'
 
 export default {
     name: 'Cocktail',
@@ -29,11 +27,17 @@ export default {
         ingredients: Array
     },
     computed: {
+        ...mapGetters(['stock']),
         propArray: function(){
             return new Array(this)
         },
         partLength: function(){
             return this.ingredients.filter(i=>i.parts > 0).length
+        }
+    },
+    methods: {
+        inStock: function(name){
+            return this.stock.filter(s=>s.in_stock).map(s=>s.type).includes(name)
         }
     },
     components: {
@@ -70,6 +74,12 @@ export default {
 .ingredient {
     display: inline-block;
     margin-right: 15px;
+}
+.ingredient-name {
+    color: #aaa;
+}
+.inStock {
+    color: black;
 }
 
 @media (max-width: 1000px){
