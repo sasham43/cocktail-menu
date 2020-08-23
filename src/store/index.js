@@ -24,10 +24,6 @@ const store = new Vuex.Store({
                 in_stock: true,
             },
             {
-                type: 'Angostura',
-                in_stock: true,
-            },
-            {
                 type: 'Benedictine',
                 in_stock: true,
             },
@@ -127,10 +123,18 @@ const store = new Vuex.Store({
         stock: state => state.stock,
         cocktails: state => state.cocktails,
     },
-    mutations: {
-        increment(state) {
-            state.count++
+    actions: {
+        setInStock: function({commit},{type, in_stock}){
+            commit('setInStock', {type, in_stock})
         }
+    },
+    mutations: {
+        setInStock: (state, {type, in_stock}) => state.stock.map(s=>{
+            if(s.type == type){
+                s.in_stock = in_stock
+            }
+            return s
+        })
     }
 })
 
