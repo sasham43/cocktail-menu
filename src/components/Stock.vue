@@ -1,6 +1,6 @@
 <template>
     <div class="stock">
-        <div class="stock-item" v-for="bottle in stock" :key="bottle.type">
+        <div class="stock-item" v-for="bottle in stock" :key="bottle.id">
             {{bottle.type}}
         </div>
     </div>
@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style scoped>
-
+.stock-item {
+    margin-top: 10px;
+}
 </style>

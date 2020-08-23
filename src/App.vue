@@ -2,19 +2,19 @@
   <div id="app">
     <!-- <router-link to="/stock">stock</router-link> -->
     <Title />
-    <!-- <Cocktails /> -->
+    <!-- <Menu /> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Title from './components/Title.vue'
-// import Cocktails from './components/Cocktails.vue'
+// import Menu from './components/Menu.vue'
 
 export default {
   name: 'App',
   components: {
-    // Cocktails,
+    // Menu,
     Title
   }
 }

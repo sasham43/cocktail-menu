@@ -51,7 +51,7 @@ const store = new Vuex.Store({
                 type: 'Maraschino Liquer',
                 in_stock: true
             }
-        ],
+        ].map(addIds),
         cocktails: [
             {
                 name: 'Manhattan',
@@ -120,7 +120,7 @@ const store = new Vuex.Store({
                     },
                 ]
             }
-        ],
+        ].map(addIds),
     },
     getters: {
         count: state => state.count,
@@ -133,6 +133,11 @@ const store = new Vuex.Store({
         }
     }
 })
+
+function addIds(item, i){
+    item.id = i
+    return item
+}
 
 
 export default store
