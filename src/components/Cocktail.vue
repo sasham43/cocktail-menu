@@ -54,6 +54,7 @@ export default {
 }
 .parts {
     grid-area: parts;
+    justify-self: end;
 }
 .parts>div{
     display: inline-block;

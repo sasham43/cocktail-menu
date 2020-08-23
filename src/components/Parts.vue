@@ -1,5 +1,5 @@
 <template>
-    <div class="part" >
+    <div class="part" :class="{marginRight: showLastPart}">
         <div class="part-wrapper" v-if="num_parts > 0" >
             <div v-for="part in partArray" :key="part.id" class="part-wheel">
                 <!-- p -->
@@ -57,7 +57,7 @@ export default {
 }
 .part {
     display: inline-block;
-    margin-right: 15px;
+    /* margin-right: 15px; */
 }
 .part-wheel {
     border-radius: 50%;
@@ -96,5 +96,8 @@ export default {
 }
 .show {
     display: inline-block;
+}
+.marginRight {
+    margin-right: 15px;
 }
 </style>
