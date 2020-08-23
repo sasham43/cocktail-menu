@@ -1,18 +1,20 @@
 <template>
   <div id="app">
+    <!-- <router-link to="/stock">stock</router-link> -->
     <Title />
-    <Cocktails />
+    <!-- <Cocktails /> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Title from './components/Title.vue'
-import Cocktails from './components/Cocktails.vue'
+// import Cocktails from './components/Cocktails.vue'
 
 export default {
   name: 'App',
   components: {
-    Cocktails,
+    // Cocktails,
     Title
   }
 }
