@@ -71,4 +71,18 @@ export default {
     margin-right: 15px;
 }
 
+@media (max-width: 1000px){
+    .cocktail {
+        grid-template-areas:
+        "name"
+        "parts"
+        "ingredients"
+        ;
+    }
+    .parts,
+    .ingredient {
+        text-align: left;
+    }
+}
+
 </style>

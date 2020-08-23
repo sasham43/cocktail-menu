@@ -32,4 +32,11 @@ export default {
   padding-left: 25%;
   padding-right: 25%;
 }
+
+@media (max-width: 1000px){
+    #app {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+}
 </style>
