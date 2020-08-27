@@ -9,7 +9,7 @@
 
 <script>
 import Cocktail from './Cocktail.vue'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
     name: 'Cocktails',
@@ -22,6 +22,12 @@ export default {
         ingredientsInStock: function(){
             return this.stock.filter(s=>s.in_stock)
         }
+    },
+    methods: {
+        ...mapActions(['getCocktails'])
+    },
+    created(){
+        this.getCocktails()
     },
     components: {
         Cocktail

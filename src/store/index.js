@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -126,6 +127,11 @@ const store = new Vuex.Store({
     actions: {
         setInStock: function({commit},{type, in_stock}){
             commit('setInStock', {type, in_stock})
+        },
+        async getCocktails(){
+            const response = await axios.get('/api')
+
+            console.log('response', response)
         }
     },
     mutations: {
