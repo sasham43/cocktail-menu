@@ -34,4 +34,10 @@ export default {
     margin-left: 25%;
     text-align: left;
 }
+@media (max-width: 1000px){
+    .stock-item {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+}
 </style>
