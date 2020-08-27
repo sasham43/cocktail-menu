@@ -16,11 +16,12 @@ function createTables(){
         SELECT 
             c.id, 
             c.name,
-            i.parts,
-            s.type
+            json_group_array(json_object('parts', i.parts, 'name', s.type)) as ingredients
         FROM cocktails c 
         JOIN ingredients i ON i.cocktail_id = c.id 
-        JOIN stock s ON s.id = i.stock_id;`, tableCreate)
+        JOIN stock s ON s.id = i.stock_id
+        GROUP BY c.id, c.name
+        ;`, tableCreate)
     })
     // db.close()
     console.log('tables created')
@@ -32,13 +33,19 @@ function tableCreate(err, data){
     console.log('data', data)
 }
 
+function parseCocktails(cocktail){
+    if(cocktail.ingredients && typeof cocktail.ingredients == 'string'){
+        cocktail.ingredients = JSON.parse(cocktail.ingredients)
+    }
+    return cocktail
+}
+
 async function getCocktails(){
-    // const response = await db.run("SELECT * FROM vw_cocktails")
     const response = await queryDatabase("SELECT * FROM vw_cocktails;")
 
     console.log('response:', response)
 
-    return response
+    return response.map(parseCocktails)
 }
 
 function queryDatabase(query, params={}){
