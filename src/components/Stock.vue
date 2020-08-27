@@ -3,7 +3,7 @@
         <div class="stock-item" v-for="bottle in stock" :key="bottle.id">
             <!-- <input type="checkbox" @click="setInStock(bottle.type, !bottle.in_stock)" /> -->
             <!-- <input type="checkbox" v-model="bottle.in_stock" />
-            <span>{{bottle.type}}</span> -->
+            <span>{{bottle.type}}</span> --> 
             <StockBottle :bottle="bottle" />
         </div>
     </div>
