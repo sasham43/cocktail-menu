@@ -129,10 +129,15 @@ const store = new Vuex.Store({
             commit('setInStock', {type, in_stock})
         },
         async getCocktails(){
-            const response = await axios.get('/api')
+            const response = await axios.get('/api/cocktails')
 
             console.log('response', response)
-        }
+        },
+        async getStock(){
+            const response = await axios.get('/api/stock')
+
+            console.log('stock response', response)
+        },
     },
     mutations: {
         setInStock: (state, {type, in_stock}) => state.stock.map(s=>{

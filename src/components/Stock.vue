@@ -10,13 +10,19 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import StockBottle from './StockBottle'
 
 export default {
     name: 'Stock',
     computed: {
         ...mapGetters(['stock'])
+    },
+    methods: {
+        ...mapActions(['getStock'])
+    },
+    created(){
+        this.getStock()
     },
     components: {
         StockBottle

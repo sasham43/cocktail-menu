@@ -23,8 +23,8 @@ function createTables(){
         GROUP BY c.id, c.name
         ;`, tableCreate)
     })
-    // db.close()
-    console.log('tables created')
+
+    // console.log('tables created')
 }
 
 function tableCreate(err, data){
@@ -38,6 +38,12 @@ function parseCocktails(cocktail){
         cocktail.ingredients = JSON.parse(cocktail.ingredients)
     }
     return cocktail
+}
+
+async function getStock(){
+    const response = await queryDatabase("SELECT * FROM stock;")
+
+    return response
 }
 
 async function getCocktails(){
@@ -63,9 +69,10 @@ function queryDatabase(query, params={}){
 
 
 
-
+// setup
 createTables()
 
 module.exports = {
     getCocktails,
+    getStock,
 }
