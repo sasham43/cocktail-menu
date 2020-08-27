@@ -13,6 +13,11 @@ app.get('/stock', async (req, res)=>{
     res.send(stock)
 })
 
+app.post('/stock', async (req, res)=>{
+    var response = await db.addStock(req.body)
+    res.send(response)
+})
+
 
 
 

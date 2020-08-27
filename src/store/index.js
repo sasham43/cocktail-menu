@@ -138,6 +138,11 @@ const store = new Vuex.Store({
 
             console.log('stock response', response)
         },
+        async addStockBottle({getters},bottle){
+            const response = await axios.post('/api/stock', bottle)
+
+            console.log('posted stock', response, getters)
+        }
     },
     mutations: {
         setInStock: (state, {type, in_stock}) => state.stock.map(s=>{

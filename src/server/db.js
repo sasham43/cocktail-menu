@@ -54,6 +54,24 @@ async function getCocktails(){
     return response.map(parseCocktails)
 }
 
+async function addStock(bottle){
+    const response = await runDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name, bottle.type, bottle.in_stock])
+
+    return response
+}
+
+function runDatabase(query, params={}){
+    return new Promise((resolve, reject)=>{
+        db.run(query, params, (err, data)=>{
+            if(err)
+                return reject(err)
+
+            // console.log('data', data)
+            resolve(data)
+        })
+    })
+}
+
 function queryDatabase(query, params={}){
     return new Promise((resolve, reject)=>{
         db.all(query, params, (err, data)=>{
@@ -75,4 +93,5 @@ createTables()
 module.exports = {
     getCocktails,
     getStock,
+    addStock,
 }
