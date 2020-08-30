@@ -15,6 +15,9 @@
             <div v-if="show_add_stock" class="add-stock-form">
                 <label class="checkbox-label add-stock-icon" for="stock_checkbox">
                     <Corner :in_stock="in_stock" />
+                    <div class="in-stock-label">
+                        In Stock
+                    </div>
                 </label>
                 <input class="checkbox" id="stock_checkbox" type="checkbox" v-model="in_stock" />
                 <input class="add-stock-type" v-model="type" type="text" placeholder="Type..." />
@@ -132,4 +135,35 @@ export default {
     height: 50px;
     vertical-align: middle;
 }
+.in-stock-label {
+    display: none;
+}
+
+
+@media (max-width: 1000px){
+    #app {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    .add-stock-form {
+        display: grid;
+        /* grid-template-columns: 10% 90%; */
+        grid-template-columns: 1fr;
+        grid-template-rows: 50px 50px 50px;
+        grid-template-areas:
+            "icon"
+            "type"
+            "name"
+            "button"
+        ;
+        margin-top: 15px;
+        padding: 0 15px;
+    }
+    .in-stock-label {
+        display: inline-block;
+    }
+    
+}
+/* art deco icon by Olena Panasovska from the Noun Project */
 </style>

@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <!-- <router-link to="/stock">stock</router-link> -->
+    <img id="lr" class="menu-corner top-corner left-corner" src="./assets/edge.svg" />
     <Title />
-    <!-- <Menu /> -->
+    <img id="tr" class="menu-corner top-corner right-corner" src="./assets/edge.svg" />
     <router-view></router-view>
+    <img id="br" class="menu-corner bottom-corner right-corner" src="./assets/edge.svg" />
+    <img id="bl" class="menu-corner bottom-corner left-corner" src="./assets/edge.svg" />
   </div>
 </template>
 
@@ -30,10 +32,53 @@ export default {
   font-family: 'Poiret One', cursive;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 60px;
   padding-left: 25%;
   padding-right: 25%;
+  position: relative;
 }
+.menu-corner {
+  width: 75px;
+  height: 75px;
+  position: absolute;
+}
+.top-corner {
+  top: 10px;
+}
+.bottom-corner {
+  bottom: 10px;
+}
+.left-corner {
+  left: 10px;
+}
+.right-corner {
+  right: 10px;
+}
+.top-corner.left-corner {
+  transform: scale(-1, 1);
+}
+.bottom-corner.left-corner {
+  transform: scale(-1);
+}
+.bottom-corner.right-corner {
+  transform: scale(1, -1);
+}
+/* #tl {
+  top: 10px;
+  left: 10px;
+}
+#tr {
+  top: 10px;
+  right: 10px;
+}
+#br {
+  bottom: 10px;
+  right: 10px;
+}
+#bl {
+  bottom: 10px;
+  left: 10px;
+} */
 
 @media (max-width: 1000px){
     #app {
