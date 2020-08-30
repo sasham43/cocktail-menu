@@ -125,24 +125,32 @@ const store = new Vuex.Store({
         cocktails: state => state.cocktails,
     },
     actions: {
-        setInStock: function({commit},{type, in_stock}){
-            commit('setInStock', {type, in_stock})
+        setInStock: async function({dispatch},{type, in_stock}){
+            const response = await axios.put('/api/stock', {type, in_stock})
+
+            console.log('put stock', response)
+
+            dispatch('getStock')
+            // commit('setInStock', {type, in_stock})
         },
         async getCocktails(){
             const response = await axios.get('/api/cocktails')
 
             console.log('response', response)
         },
-        async getStock(){
+        async getStock({commit}){
             const response = await axios.get('/api/stock')
 
             console.log('stock response', response)
+            commit('setStock', response.data)
         },
-        async addStockBottle({getters},bottle){
+        async addStockBottle({getters, dispatch},bottle){
             const response = await axios.post('/api/stock', bottle)
 
             console.log('posted stock', response, getters)
-        }
+            // actions.getStock()
+            dispatch('getStock')
+        },
     },
     mutations: {
         setInStock: (state, {type, in_stock}) => state.stock.map(s=>{
@@ -150,7 +158,8 @@ const store = new Vuex.Store({
                 s.in_stock = in_stock
             }
             return s
-        })
+        }),
+        setStock: (state, stock) => state.stock = stock,
     }
 })
 

@@ -43,7 +43,7 @@ function parseCocktails(cocktail){
 async function getStock(){
     const response = await queryDatabase("SELECT * FROM stock;")
 
-    return response
+    return response.map(changeBooleans)
 }
 
 async function getCocktails(){
@@ -60,13 +60,20 @@ async function addStock(bottle){
     return response
 }
 
+async function editStock(bottle){
+    console.log('edit stokc', bottle)
+    const response = await runDatabase("UPDATE stock SET in_stock = $1 WHERE type = $2;", [bottle.in_stock, bottle.type])
+
+    return response
+}
+
 function runDatabase(query, params={}){
     return new Promise((resolve, reject)=>{
         db.run(query, params, (err, data)=>{
             if(err)
                 return reject(err)
 
-            // console.log('data', data)
+            console.log('run data', data)
             resolve(data)
         })
     })
@@ -84,6 +91,18 @@ function queryDatabase(query, params={}){
     })
 }
 
+function changeBooleans(a){
+    if(Object.keys(a).includes('in_stock')){
+        if(a.in_stock === 1){
+            a.in_stock = true
+        } 
+        if(a.in_stock === 0){
+            a.in_stock = false
+        }
+    }
+    return a
+}
+
 
 
 
@@ -94,4 +113,5 @@ module.exports = {
     getCocktails,
     getStock,
     addStock,
+    editStock,
 }

@@ -18,6 +18,11 @@ app.post('/stock', async (req, res)=>{
     res.send(response)
 })
 
+app.put('/stock', async (req, res)=>{
+    var response = await db.editStock(req.body)
+    res.send(response)
+})
+
 
 
 
