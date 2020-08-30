@@ -6,11 +6,11 @@ var db = new sqlite3.Database(':cocktails:', err=>{
 
 function createTables(){
     db.serialize(()=>{
-        db.run('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT);', tableCreate)
+        db.run('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL);', tableCreate)
     
-        db.run('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER, parts REAL, stock_id INTEGER);', tableCreate)
+        db.run('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
     
-        db.run('CREATE TABLE IF NOT EXISTS stock (id INTEGER PRIMARY KEY, name TEXT, type TEXT, in_stock BOOLEAN);', tableCreate)
+        db.run('CREATE TABLE IF NOT EXISTS stock (id INTEGER PRIMARY KEY, name TEXT, type TEXT NOT NULL, in_stock BOOLEAN);', tableCreate)
     
         db.run(`CREATE VIEW IF NOT EXISTS vw_cocktails AS 
         SELECT 
