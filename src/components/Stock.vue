@@ -7,17 +7,19 @@
             <StockBottle :bottle="bottle" />
         </div>
         <div class="add-stock">
-            <button class="add-stock-button">
+            <img class="bracket-img" src="../assets/bracket.svg" />
+            <button @click="toggleAddStock()" class="add-stock-button">
                 Add Stock
             </button>
-            <div class="add-stock-form">
-                <label class="checkbox-label" for="stock_checkbox">
+            <img class="bracket-img" src="../assets/bracket.svg" />
+            <div v-if="show_add_stock" class="add-stock-form">
+                <label class="checkbox-label add-stock-icon" for="stock_checkbox">
                     <Corner :in_stock="in_stock" />
                 </label>
                 <input class="checkbox" id="stock_checkbox" type="checkbox" v-model="in_stock" />
-                <input v-model="type" type="text" placeholder="Type..." />
-                <input v-model="name" type="text" placeholder="Name..." />
-                <button @click="addBottle()" class="add-stock-button">
+                <input class="add-stock-type" v-model="type" type="text" placeholder="Type..." />
+                <input class="add-stock-name" v-model="name" type="text" placeholder="Name..." />
+                <button @click="addBottle()" class="add-stock-button submit-stock-button">
                     Add Bottle to Stock
                 </button>
             </div>
@@ -37,28 +39,31 @@ export default {
               in_stock: true,
               name: '',
               type: '',
+              show_add_stock: false,
         }
     },
     computed: {
         ...mapGetters(['stock']),
-        // new_bottle: function(){
-        //     return {
-        //         in_stock: this.in_stock,
-        //         name: this.name,
-        //         type: this.type,
-        //     }
-        // }
     },
     methods: {
         ...mapActions(['getStock', 'addStockBottle']),
-        addBottle: function(){
+        addBottle: async function(){
             var bottle = {
                 in_stock: this.in_stock,
                 name: this.name,
                 type: this.type,
             }
 
-            this.addStockBottle(bottle)
+            await this.addStockBottle(bottle)
+
+            this.resetBottle()
+        },
+        resetBottle(){
+            this.name = ''
+            this.type = ''
+        },
+        toggleAddStock(){
+            this.show_add_stock = !this.show_add_stock
         }
     },
     created(){
@@ -94,5 +99,37 @@ export default {
     font-size: 18px;
     margin-top: 20px;
     cursor: pointer;
+}
+.add-stock-form {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 50px 50px 50px;
+    grid-template-areas:
+        "icon type"
+        ". name"
+        ". button"
+    ;
+    margin-top: 15px;
+}
+.add-stock-icon {
+    grid-area: icon;
+}
+.add-stock-name {
+    grid-area: name;
+    font-family: inherit;
+    font-size: 16px;
+}
+.add-stock-type {
+    grid-area: type;
+    font-family: inherit;
+    font-size: 16px;
+}
+.submit-stock-button {
+    grid-area: button;
+}
+.bracket-img {
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
 }
 </style>

@@ -150,6 +150,7 @@ const store = new Vuex.Store({
             console.log('posted stock', response, getters)
             // actions.getStock()
             dispatch('getStock')
+            return response
         },
     },
     mutations: {

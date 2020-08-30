@@ -61,7 +61,6 @@ async function addStock(bottle){
 }
 
 async function editStock(bottle){
-    console.log('edit stokc', bottle)
     const response = await runDatabase("UPDATE stock SET in_stock = $1 WHERE type = $2;", [bottle.in_stock, bottle.type])
 
     return response
@@ -73,7 +72,7 @@ function runDatabase(query, params={}){
             if(err)
                 return reject(err)
 
-            console.log('run data', data)
+            // console.log('run data', data)
             resolve(data)
         })
     })
