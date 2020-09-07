@@ -35,6 +35,9 @@ export default {
         ...mapActions(['getCocktails']),
         toggleAddCocktails(){
             this.show_add_cocktails = !this.show_add_cocktails
+            if(!this.show_add_cocktails){
+                this.getCocktails()
+            }
         }
     },
     created(){
