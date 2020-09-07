@@ -25,7 +25,7 @@ export default {
     name: 'Title',
     data: function(){
         return {
-            hide_menu: true
+            hide_menu: false
         }
     },
     methods: {
