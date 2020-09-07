@@ -4,6 +4,18 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+const new_cocktail_default = {
+    title: '',
+    ingredients: [{
+        name: '',
+        parts: 1
+    }]
+}
+const new_ingredient_default = {
+    name: '',
+    parts: 1
+}
+
 const store = new Vuex.Store({
     state: {
         count: 10,
@@ -118,11 +130,19 @@ const store = new Vuex.Store({
                 ]
             }
         ].map(addIds),
+        new_cocktail: {
+            title: '',
+            ingredients: [{
+                name: '',
+                parts: 1
+            }]
+        }
     },
     getters: {
         count: state => state.count,
         stock: state => state.stock,
         cocktails: state => state.cocktails,
+        new_cocktail: state => state.new_cocktail,
     },
     actions: {
         setInStock: async function({dispatch},{type, in_stock}){
@@ -152,6 +172,12 @@ const store = new Vuex.Store({
             dispatch('getStock')
             return response
         },
+        addIngredient({commit}){
+            commit('addNewIngredient', new_ingredient_default)
+        },
+        newBlankCocktail({commit}){
+            commit('newBlankCocktail', new_cocktail_default)
+        }
     },
     mutations: {
         setInStock: (state, {type, in_stock}) => state.stock.map(s=>{
@@ -161,6 +187,8 @@ const store = new Vuex.Store({
             return s
         }),
         setStock: (state, stock) => state.stock = stock,
+        addNewIngredient: (state, ing) => state.new_cocktail.ingredients.push(ing),
+        newBlankCocktail: (state, cocktail) => state.new_cocktail = cocktail,
     }
 })
 
