@@ -59,4 +59,21 @@ export default {
     width: 50px;
     cursor: pointer;
 }
+.add-cocktail input {
+    height: 30px;
+    font-family: inherit;
+    font-size: 18px;
+    text-align: center;
+}
+.add-cocktail label {
+    margin-right: 20px;
+}
+button {
+    font-family: inherit;
+    font-size: 16px;
+    background: none;
+    border: solid 1px #ccc;
+    padding: 10px;
+    margin: 10px;
+}
 </style>

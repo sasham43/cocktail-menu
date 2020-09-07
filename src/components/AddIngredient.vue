@@ -62,4 +62,13 @@ export default {
     display: grid;
     grid-template-columns: 50% 50%;
 }
+.add-ingredient input {
+    height: 30px;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: center;
+}
+.add-ingredient label {
+    margin-right: 10px;
+}
 </style>
