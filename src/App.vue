@@ -25,6 +25,11 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
+html, body {
+  /* height: 100%; */
+  height: calc(100% - 16px);
+}
+
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,6 +41,7 @@ export default {
   padding-left: 25%;
   padding-right: 25%;
   position: relative;
+  height: 100%;
 }
 .menu-corner {
   width: 75px;
