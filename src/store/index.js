@@ -142,7 +142,24 @@ const store = new Vuex.Store({
         count: state => state.count,
         stock: state => state.stock,
         cocktails: state => state.cocktails,
-        new_cocktail: state => state.new_cocktail,
+        new_cocktail: function(state){
+            return {
+                title: state.new_cocktail.title,
+                ingredients: state.new_cocktail.ingredients.map(c=>{
+                    c.id = state.new_cocktail.ingredients.length
+                    return c
+                })
+            }
+        },
+        // new_cocktail: state => {
+        //     return {
+        //         title: state.new_cocktail.title,
+        //         ingredients: state.new_cocktail.ingredients.map(c=>{
+        //             c.id = state.new_cocktail.ingredients.length
+        //             return c
+        //         })
+        //     }
+        // },
     },
     actions: {
         setInStock: async function({dispatch},{type, in_stock}){
@@ -177,6 +194,9 @@ const store = new Vuex.Store({
         },
         newBlankCocktail({commit}){
             commit('newBlankCocktail', new_cocktail_default)
+        },
+        updateIngredient({commit}, ing){
+            commit('updateNewCocktailIngredient', ing)
         }
     },
     mutations: {
@@ -189,6 +209,14 @@ const store = new Vuex.Store({
         setStock: (state, stock) => state.stock = stock,
         addNewIngredient: (state, ing) => state.new_cocktail.ingredients.push(ing),
         newBlankCocktail: (state, cocktail) => state.new_cocktail = cocktail,
+        updateNewCocktailIngredient: (state, ingredient) => {
+            state.new_cocktail.ingredients = state.new_cocktail.ingredients.map(i=>{
+                if(i.id == ingredient.id){
+                    return ingredient
+                }
+                return i
+            })
+        }
     }
 })
 
