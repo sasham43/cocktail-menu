@@ -64,6 +64,7 @@ export default {
   transition: .5s;
   /* filter: invert(1); */
   filter: contrast(2) invert(1) grayscale(1);
+  pointer-events: none; /* pass click events through to router-link */
 }
 .bg.hide {
   animation: fade2 1.5s steps(24) forwards;
