@@ -18,6 +18,9 @@
         <div class="submit-cocktail">
             <button @click="saveNewCocktail()">Add Cocktail</button>
         </div>
+        <router-link to="/">
+            <img class="add-cocktail-button" src="../assets/add.svg" />
+        </router-link>
     </div>
 </template>
 
@@ -50,5 +53,10 @@ export default {
 <style scoped>
 .ingredients {
     margin-top: 20px;
+}
+.add-cocktail-button {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
 }
 </style>

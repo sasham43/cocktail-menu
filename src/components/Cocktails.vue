@@ -2,20 +2,23 @@
     <div class="cocktails">
         <!-- count{{count}} -->
         <div v-for="cocktail in cocktails" :key="cocktail.name" >
-            <Cocktail v-if="show_add_cocktails" :name="cocktail.name" :ingredients="cocktail.ingredients" />
+            <Cocktail :name="cocktail.name" :ingredients="cocktail.ingredients" />
         </div>
-        <div v-if="!show_add_cocktails" class="add-cocktail-menu">
+        <!-- <div v-if="!show_add_cocktails" class="add-cocktail-menu">
             <AddCocktail />
-        </div>
+        </div> -->
         <div class="add-cocktail">
-            <img @click="toggleAddCocktails()" class="add-cocktail-button" src="../assets/add.svg" />
+            <!-- <img @click="toggleAddCocktails()" class="add-cocktail-button" src="../assets/add.svg" /> -->
+            <router-link to="/add-cocktails">
+                <img class="add-cocktail-button" src="../assets/add.svg" />
+            </router-link>
         </div>
     </div>
 </template>
 
 <script>
 import Cocktail from './Cocktail.vue'
-import AddCocktail from './AddCocktail.vue'
+// import AddCocktail from './AddCocktail.vue'
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -45,7 +48,7 @@ export default {
     },
     components: {
         Cocktail,
-        AddCocktail,
+        // AddCocktail,
     }
 }
 </script>
