@@ -2,9 +2,11 @@
     <div class="menu">
         <div class="link-container">
             <router-link class="link" to="/">Cocktails</router-link>
+            <div class="bg" :class="{hide: hide}"></div>
+        </div>
+        <div class="link-container">
             <router-link class="link" to="/stock">Stock</router-link>
-            <div class="bg" :class="{show: show}">
-            </div>
+            <div class="bg" :class="{hide: hide}"></div>
         </div>
     </div>
 </template>
@@ -13,7 +15,7 @@
 export default {
     name: 'Menu',
     props: {
-        show: Boolean
+        hide: Boolean
     }
 }
 </script>
@@ -22,6 +24,9 @@ export default {
 .menu {
     font-size: 18px;
     padding-top: 10px;
+    /* opacity: 0; */
+    /* transition: opacity 3s ease-in; */
+    /* animation: fadein 3s; */
 }
 .link {
     margin-right: 10px;
@@ -31,12 +36,18 @@ export default {
     color: black;
 }
 
+/* @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+} */
+
 /* ink effects  */
 .link-container {
     /* height: 41px;
     width: 100px; */
     position: relative;
     overflow: hidden;
+    display: inline-block;
 }
 .bg {
   background: url('https://codyhouse.co/demo/ink-transition-effect/img/ink.png');
@@ -54,7 +65,7 @@ export default {
   /* filter: invert(1); */
   filter: contrast(2) invert(1) grayscale(1);
 }
-.bg.show {
+.bg.hide {
   animation: fade2 1.5s steps(24) forwards;
 }
 @keyframes fade {

@@ -14,7 +14,7 @@
             </div>
 
         </div> -->
-        <Menu class="menu" :class="{show: show_menu}" :show="show_menu" />           
+        <Menu class="menu" :hide="hide_menu" />           
     </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     name: 'Title',
     data: function(){
         return {
-            show_menu: false
+            hide_menu: true
         }
     },
     methods: {
