@@ -27,7 +27,7 @@ export default {
 
 html, body {
   /* height: 100%; */
-  height: calc(100% - 16px);
+  height: calc(100% - 30px);
 }
 
 #app {
