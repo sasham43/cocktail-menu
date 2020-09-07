@@ -30,7 +30,7 @@ export default {
     },
     methods: {
         toggleMenu: function(){
-            this.show_menu = !this.show_menu
+            this.hide_menu = !this.hide_menu
         }
     },
     components: {
