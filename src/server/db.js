@@ -54,6 +54,50 @@ async function getCocktails(){
     return response.map(parseCocktails)
 }
 
+async function saveCocktail(cocktail){
+    try {
+        await runDatabase('INSERT INTO cocktails (name) VALUES ($1);', [cocktail.name])
+
+        var new_cocktail = await queryDatabase('SELECT last_insert_rowid();')
+        console.log('new cocktail', new_cocktail)
+
+        if (new_cocktail && new_cocktail.length > 0 && new_cocktail[0]['last_insert_rowid()'] != undefined){
+            var new_cocktail_id = new_cocktail[0]['last_insert_rowid()']
+            for (var i in cocktail.ingredients){
+                var ingredient = cocktail.ingredients[i]
+                // console.log('ing', ingredient)
+                console.log('new cocktail id', new_cocktail_id)
+                await addIngredient(new_cocktail_id, ingredient)
+            }
+        }
+    
+    } catch(e){
+        console.log('oh no', e)
+        throw new Error(e)
+    }
+
+}
+
+async function addIngredient(cocktail_id, ingredient){
+    var stock = await queryDatabase('SELECT id FROM stock WHERE type = $1;', [ingredient.name])
+    console.log('stock', stock, ingredient)
+
+    if(stock && stock.length > 0 && stock[0].id != undefined){
+        console.log('got stock', stock[0].id)
+        await runDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, stock[0].id, ingredient.parts])
+    } else {
+        // insert stock
+        await runDatabase('INSERT INTO stock (type, in_stock) VALUES ($1, false);', [ingredient.name])
+        var new_stock = await queryDatabase('SELECT last_insert_rowid();')
+        console.log('inserted new stock', new_stock)
+        if (new_stock && new_stock.length > 0 && new_stock[0]['last_insert_rowid()'] != undefined) {
+            var new_stock_id = new_stock[0]['last_insert_rowid()']
+            await runDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, new_stock_id, ingredient.parts])
+        }
+    }
+
+}
+
 async function addStock(bottle){
     const response = await runDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name, bottle.type, bottle.in_stock])
 
@@ -72,7 +116,7 @@ function runDatabase(query, params={}){
             if(err)
                 return reject(err)
 
-            // console.log('run data', data)
+            console.log('run data', data)
             resolve(data)
         })
     })
@@ -113,4 +157,5 @@ module.exports = {
     getStock,
     addStock,
     editStock,
+    saveCocktail,
 }

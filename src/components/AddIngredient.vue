@@ -30,16 +30,24 @@ export default {
             get(){
                 return this.ingredient.name
             },
-            set(){
-                return this.updateIngredient(this.ingredient.id)
+            set(name){
+                return this.updateIngredient({
+                    id: this.ingredient.id,
+                    name: name,
+                    parts: this.ingredient.parts
+                })
             }
         },
         ingredient_parts: {
             get(){
                 return this.ingredient.parts
             },
-            set(){
-                return this.updateIngredient(this.ingredient.id)
+            set(parts){
+                return this.updateIngredient({
+                    id: this.ingredient.id,
+                    name:  this.ingredient.name,
+                    parts: parts
+                })
             }
         }
     },

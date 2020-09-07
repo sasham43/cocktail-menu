@@ -8,6 +8,18 @@ app.get('/cocktails', async (req, res) => {
     res.send(cocktails)
 })
 
+app.post('/cocktails', async (req, res)=>{
+    try {
+        console.log('req body', req.body)
+        await db.saveCocktail(req.body)
+        return res.sendStatus(200)
+    } catch(e){
+        return res.status(500).send({
+            error: e
+        })
+    }
+})
+
 app.get('/stock', async (req, res)=>{
     var stock = await db.getStock()
     res.send(stock)
