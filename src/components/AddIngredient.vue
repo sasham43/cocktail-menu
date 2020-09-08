@@ -4,17 +4,19 @@
             <label>Ingredient</label>
             <input v-model="ingredient_name" type="text" />
         </div>
+        <div class="parts-icon-container">
+            <Parts :num_parts="ingredient_parts" :index="index" :length="partLength" /> 
+        </div>
         <div class="parts-ingredient">
             <label>Parts</label>
             <input v-model="ingredient_parts" type="number" /> 
-            <div class="parts-icon-container">
-
-            </div>
+            
         </div>
     </div>
 </template> 
 
 <script>
+import Parts from './Parts.vue'
 import {mapActions} from 'vuex'
 
 export default {
@@ -26,6 +28,13 @@ export default {
         ingredient: Object
     },
     computed: {
+        index: function(){
+            return 0
+        },
+        partLength: function(){
+            return 1
+            // return this.ingredients.filter(i=>i.parts > 0).length
+        },
         ingredient_name: {
             get(){
                 return this.ingredient.name
@@ -40,7 +49,7 @@ export default {
         },
         ingredient_parts: {
             get(){
-                return this.ingredient.parts
+                return +this.ingredient.parts
             },
             set(parts){
                 return this.updateIngredient({
@@ -53,6 +62,9 @@ export default {
     },
     methods: {
         ...mapActions(['updateIngredient'])
+    },
+    components: {
+        Parts
     }
 }
 </script>
@@ -60,7 +72,7 @@ export default {
 <style scoped>
 .add-ingredient {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(3, 1fr);
 }
 .add-ingredient input {
     height: 30px;
@@ -70,5 +82,8 @@ export default {
 }
 .add-ingredient label {
     margin-right: 10px;
+}
+.parts-icon-container {
+    align-self: center;
 }
 </style>

@@ -5,7 +5,8 @@
                 <!-- p -->
             </div>
             <!-- {{remainder}} -->
-            <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5}">
+            <!-- <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5, 'three-quarters-circle': remainder == 0.75}"> -->
+            <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5, threeQuartersRight: remainder == 0.75}">
 
             </div>
             <span v-if="showLastPart">|</span>
@@ -25,7 +26,14 @@ export default {
     computed: {
         partArray: function(){
             var parts = []
-            for(var i = 0; i < this.num_parts; i++){
+            console.log('num parts', this.num_parts)
+            var num = 0
+            if(this.num_parts.toString().includes('.')){
+                num = Number(this.num_parts.toString().split('.')[0])
+            } else {
+                num = this.num_parts
+            }
+            for(var i = 0; i < num; i++){
                 parts.push({
                     id: i
                 })
@@ -93,6 +101,32 @@ export default {
      border:1px solid #000; 
      background: black;
      border-radius: 0 0 0 90px;
+}
+.threeQuartersRight{
+     /* width:100px; 
+     height:100px;  */
+     width: 0px;
+     height: 0px;
+     /* width: 5px;
+     height: 5px; */
+     /* border:1px solid #000;  */
+     /* background: black; */
+     /* border-radius: 0 90px 90px 90px; */
+     background: transparent;
+    border-right: 5px solid black;
+    border-top: 5px solid transparent;
+    border-left: 5px solid black;
+    border-bottom: 5px solid black;
+    border-radius: 5px;
+    transform: rotate(45deg)
+}
+.three-quarters-circle {
+  width: 0px;
+  height: 0px;
+  border-radius: 100px;
+  border: 100px solid aqua;
+  border-top-color: transparent;
+  -webkit-transform: rotate(45deg);
 }
 .show {
     display: inline-block;
