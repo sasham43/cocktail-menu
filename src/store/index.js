@@ -198,9 +198,10 @@ var actions = {
     updateIngredient({ commit }, ing){
         commit('updateNewCocktailIngredient', ing)
     },
-    async saveNewCocktail(){
+    async saveNewCocktail({dispatch}){
         console.log('posting new cocktail', state.new_cocktail)
         await axios.post('/api/cocktails', state.new_cocktail)
+        dispatch('newBlankCocktail')
     },
     updateNewCocktail({commit}, name){
         commit('updateNewCocktail', name)

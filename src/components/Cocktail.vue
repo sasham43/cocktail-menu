@@ -54,7 +54,7 @@ export default {
     grid-template-areas:
         "name parts"
         "ingredients ingredients"
-    ;
+    ;    
 }
 .parts {
     grid-area: parts;
@@ -89,6 +89,7 @@ export default {
         "parts"
         "ingredients"
         ;
+        padding: 0 10px;
     }
     .parts,
     .ingredient {

@@ -16,7 +16,7 @@
             <button @click="addIngredient()">Add Ingredient</button>
         </div>
         <div class="submit-cocktail">
-            <button @click="saveNewCocktail()">Add Cocktail</button>
+            <button @click="saveCocktail()">Save Cocktail</button>
         </div>
         <router-link to="/">
             <img class="add-cocktail-button" src="../assets/add.svg" />
@@ -42,7 +42,11 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['addIngredient', 'saveNewCocktail', 'updateNewCocktail'])
+        ...mapActions(['addIngredient', 'saveNewCocktail', 'updateNewCocktail']),
+        saveCocktail: async function(){
+            await this.saveNewCocktail()
+            this.$router.push({path: '/'})
+        }
     },
     components: {
         AddIngredient
@@ -51,6 +55,12 @@ export default {
 </script>
 
 <style scoped>
+.add-cocktail {
+
+    max-height: calc(100% - 200px);
+    overflow: scroll;
+    padding-bottom: 100px;
+}
 .ingredients {
     margin-top: 20px;
 }

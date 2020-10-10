@@ -55,6 +55,11 @@ export default {
 
 
 <style scoped>
+.cocktails {
+    max-height: calc(100% - 200px);
+    overflow: scroll;
+    padding-bottom: 100px;
+}
 .add-cocktail-button {
     height: 50px;
     width: 50px;
