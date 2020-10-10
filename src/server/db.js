@@ -6,7 +6,7 @@ var db = new sqlite3.Database(':cocktails:', err=>{
 
 function createTables(){
     db.serialize(()=>{
-        db.run('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL);', tableCreate)
+        db.run('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE);', tableCreate)
     
         db.run('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
     

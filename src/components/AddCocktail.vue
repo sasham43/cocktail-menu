@@ -42,11 +42,14 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['addIngredient', 'saveNewCocktail', 'updateNewCocktail']),
+        ...mapActions(['addIngredient', 'saveNewCocktail', 'updateNewCocktail', 'newBlankCocktail']),
         saveCocktail: async function(){
             await this.saveNewCocktail()
             this.$router.push({path: '/'})
         }
+    },
+    created(){
+        this.newBlankCocktail()
     },
     components: {
         AddIngredient
@@ -56,7 +59,6 @@ export default {
 
 <style scoped>
 .add-cocktail {
-
     max-height: calc(100% - 200px);
     overflow: scroll;
     padding-bottom: 100px;
