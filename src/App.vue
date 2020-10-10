@@ -27,7 +27,11 @@ export default {
 
 html, body {
   /* height: 100%; */
-  height: calc(100% - 30px);
+  /* height: calc(100% - 30px); */
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  overflow: hidden;
 }
 
 #app {
@@ -40,8 +44,10 @@ html, body {
   padding-top: 60px;
   padding-left: 25%;
   padding-right: 25%;
+  padding-bottom: 20px;
   position: relative;
-  height: 100%;
+  /* height: 100%; */
+  height: calc(100% - 80px); /* take padding into account */
 }
 .menu-corner {
   width: 75px;

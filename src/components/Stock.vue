@@ -82,6 +82,10 @@ export default {
 <style>
 .stock {
     font-size: 20px;
+    /* max-height: calc(100vh - 140px); */
+    max-height: calc(100% - 200px);
+    overflow: scroll;
+    padding-bottom: 100px;
 }
 .stock-item {
     margin-top: 10px;
@@ -93,6 +97,8 @@ export default {
     .stock-item {
       padding-left: 5%;
       padding-right: 5%;
+      margin-left: 1%;
+      margin-right: 1%;
     }
 }
 .add-stock-button {
