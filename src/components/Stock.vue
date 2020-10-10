@@ -4,24 +4,25 @@
             <StockBottle :bottle="bottle" />
         </div>
         <div class="add-stock">
-            <img class="bracket-img" src="../assets/bracket.svg" />
-            <button @click="toggleAddStock()" class="add-stock-button">
+            <img class="bracket-img" @click="toggleAddStock()" src="../assets/bracket.svg" />
+            <!-- <button @click="toggleAddStock()" class="add-stock-button">
                 Add Stock
             </button>
-            <img class="bracket-img" src="../assets/bracket.svg" />
+            <img class="bracket-img" src="../assets/bracket.svg" /> -->
             <div v-if="show_add_stock" class="add-stock-form">
-                <label class="checkbox-label add-stock-icon" for="stock_checkbox">
+                <!-- <label class="checkbox-label add-stock-icon" for="stock_checkbox">
                     <Corner :in_stock="in_stock" />
                     <div class="in-stock-label">
                         In Stock
                     </div>
-                </label>
-                <input class="checkbox" id="stock_checkbox" type="checkbox" v-model="in_stock" />
+                </label> -->
+                <!-- <input class="checkbox" id="stock_checkbox" type="checkbox" v-model="in_stock" />
                 <input class="add-stock-type" v-model="type" type="text" placeholder="Type..." />
                 <input class="add-stock-name" v-model="name" type="text" placeholder="Name..." />
                 <button @click="addBottle()" class="add-stock-button submit-stock-button">
                     Add Bottle to Stock
-                </button>
+                </button> -->
+                <AddStock />
             </div>
         </div>
     </div>
@@ -30,7 +31,8 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import StockBottle from './StockBottle'
-import Corner from './Corner'
+import AddStock from './AddStock'
+// import Corner from './Corner'
 
 export default {
     name: 'Stock',
@@ -71,12 +73,13 @@ export default {
     },
     components: {
         StockBottle,
-        Corner,
+        // Corner,
+        AddStock,
     }
 }
 </script>
 
-<style scoped>
+<style>
 .stock {
     font-size: 20px;
 }

@@ -9,7 +9,7 @@
         </div>
         <div class="parts-ingredient">
             <label>Parts</label>
-            <input v-model="ingredient_parts" type="number" /> 
+            <input v-model="ingredient_parts" step="0.25" type="number" /> 
             
         </div>
     </div>
