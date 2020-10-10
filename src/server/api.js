@@ -39,6 +39,7 @@ app.put('/stock', async (req, res)=>{
 
 
 app.listen(port, () => {
+    console.log(process.env)
     console.log(`Example app listening at http://localhost:${port}`)
 })
 
