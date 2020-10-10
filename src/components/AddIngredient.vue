@@ -10,7 +10,6 @@
         <div class="parts-ingredient">
             <label>Parts</label>
             <input v-model="ingredient_parts" step="0.25" type="number" /> 
-            
         </div>
     </div>
 </template> 
@@ -85,5 +84,29 @@ export default {
 }
 .parts-icon-container {
     align-self: center;
+}
+
+@media(max-width: 1000px){
+    .add-ingredient {
+        /* grid-template-columns: 1fr; */
+        grid-template-columns: 40% 60%;
+        grid-template-areas: 
+            "ingredient ingredient"
+            "parts-icon parts"
+        ;
+        margin-bottom: 20px;
+    }
+    .title-ingredient {
+        grid-area: ingredient;
+        justify-self: end;
+    }
+    .parts-icon-container {
+        grid-area: parts-icon;
+    }
+    .parts-ingredient {
+        grid-area: parts;
+        justify-self: end;
+    }
+
 }
 </style>
