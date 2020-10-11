@@ -20,11 +20,11 @@ const db = new Client({
 
 function createTables(){
     // db.serialize(()=>{
-        db.query('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE);', tableCreate)
+        db.query('CREATE TABLE IF NOT EXISTS cocktails (id SERIAL, name TEXT NOT NULL UNIQUE);', tableCreate)
     
-        db.query('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
+        db.query('CREATE TABLE IF NOT EXISTS ingredients (id SERIAL, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
     
-        db.query('CREATE TABLE IF NOT EXISTS stock (id INTEGER PRIMARY KEY, name TEXT, type TEXT NOT NULL, in_stock BOOLEAN);', tableCreate)
+        db.query('CREATE TABLE IF NOT EXISTS stock (id SERIAL, name TEXT, type TEXT NOT NULL, in_stock BOOLEAN);', tableCreate)
     
         db.query(`CREATE VIEW vw_cocktails AS 
         SELECT 
