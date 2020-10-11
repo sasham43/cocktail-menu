@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 8000
+// const port = process.env.PORT || 8000
 var db = require('./db')
 
 console.log('configuring api')
@@ -40,9 +40,9 @@ app.put('/stock', async (req, res)=>{
 
 
 
-app.listen(port, () => {
-    console.log(process.env)
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+// app.listen(port, () => {
+//     console.log(process.env)
+//     console.log(`Example app listening at http://localhost:${port}`)
+// })
 
 module.exports = app
