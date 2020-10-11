@@ -70,9 +70,10 @@ async function getCocktails(){
 
 async function saveCocktail(cocktail){
     try {
-        await queryDatabase('INSERT INTO cocktails (name) VALUES ($1);', [cocktail.name])
+        var new_cocktail = await queryDatabase('INSERT INTO cocktails (name) VALUES ($1) RETURNING id;', [cocktail.name])
 
-        var new_cocktail = await queryDatabase('SELECT last_insert_rowid();')
+        // var new_cocktail = await queryDatabase('SELECT last_insert_rowid();') // needs to change
+        // var new_cocktail = 
         console.log('new cocktail', new_cocktail)
 
         if (new_cocktail && new_cocktail.length > 0 && new_cocktail[0]['last_insert_rowid()'] != undefined){
@@ -136,7 +137,7 @@ async function editStock(bottle){
 //     })
 // }
 
-function queryDatabase(query, params={}){
+function queryDatabase(query, params=[]){
     return new Promise((resolve, reject)=>{
         db.query(query, params, (err, data)=>{
             if(err)
