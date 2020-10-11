@@ -13,7 +13,12 @@ app.get('/cocktails', async (req, res) => {
 app.post('/cocktails', async (req, res)=>{
     try {
         console.log('req body', req.body)
-        await db.saveCocktail(req.body)
+        try{
+            await db.saveCocktail(req.body)
+        } catch(e){
+            console.log(`didn't save cocktails `, e)
+            return res.status(500).send(e)
+        }
         return res.sendStatus(200)
     } catch(e){
         return res.status(500).send({
