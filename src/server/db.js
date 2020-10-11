@@ -1,28 +1,37 @@
-var sqlite3 = require('sqlite3').verbose()
-var db = new sqlite3.Database(':cocktails:', err=>{
-    console.log('database opened:', err)
-})
+// var sqlite3 = require('sqlite3').verbose()
+// var db = new sqlite3.Database(':cocktails:', err=>{
+//     console.log('database opened:', err)
+// })
+
+const { Client } = require('pg')
+const db = new Client()
+    ; (async () => {
+        await db.connect()
+        const res = await db.query('SELECT $1::text as message', ['Hello world!'])
+        console.log(res.rows[0].message) // Hello world!
+        await db.end()
+    })()
 
 
 function createTables(){
-    db.serialize(()=>{
-        db.run('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE);', tableCreate)
+    // db.serialize(()=>{
+        db.query('CREATE TABLE IF NOT EXISTS cocktails (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE);', tableCreate)
     
-        db.run('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
+        db.query('CREATE TABLE IF NOT EXISTS ingredients (id INTEGER PRIMARY KEY, cocktail_id INTEGER NOT NULL, parts REAL, stock_id INTEGER);', tableCreate)
     
-        db.run('CREATE TABLE IF NOT EXISTS stock (id INTEGER PRIMARY KEY, name TEXT, type TEXT NOT NULL, in_stock BOOLEAN);', tableCreate)
+        db.query('CREATE TABLE IF NOT EXISTS stock (id INTEGER PRIMARY KEY, name TEXT, type TEXT NOT NULL, in_stock BOOLEAN);', tableCreate)
     
-        db.run(`CREATE VIEW IF NOT EXISTS vw_cocktails AS 
+        db.query(`CREATE VIEW vw_cocktails AS 
         SELECT 
             c.id, 
             c.name,
-            json_group_array(json_object('parts', i.parts, 'name', s.type)) as ingredients
+            json_agg(json_build_object('parts', i.parts, 'name', s.type)) as ingredients
         FROM cocktails c 
         JOIN ingredients i ON i.cocktail_id = c.id 
         JOIN stock s ON s.id = i.stock_id
         GROUP BY c.id, c.name
         ;`, tableCreate)
-    })
+    // })
 
     // console.log('tables created')
 }
@@ -112,7 +121,7 @@ async function editStock(bottle){
 
 function runDatabase(query, params={}){
     return new Promise((resolve, reject)=>{
-        db.run(query, params, (err, data)=>{
+        db.query(query, params, (err, data)=>{
             if(err)
                 return reject(err)
 
