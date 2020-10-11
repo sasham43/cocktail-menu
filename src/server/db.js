@@ -4,7 +4,12 @@
 // })
 
 const { Client } = require('pg')
-const db = new Client()
+const db = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+})
     ; (async () => {
         await db.connect()
         const res = await db.query('SELECT $1::text as message', ['Hello world!'])
