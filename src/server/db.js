@@ -79,7 +79,7 @@ async function saveCocktail(cocktail){
         console.log('new cocktail', new_cocktail)
 
         // if (new_cocktail && new_cocktail.length > 0 && new_cocktail[0]['last_insert_rowid()'] != undefined){
-            var new_cocktail_id = new_cocktail[0]['id']
+            var new_cocktail_id = new_cocktail.rows[0]['id']
             for (var i in cocktail.ingredients){
                 var ingredient = cocktail.ingredients[i]
                 // console.log('ing', ingredient)
