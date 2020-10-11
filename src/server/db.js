@@ -57,15 +57,17 @@ function parseCocktails(cocktail){
 async function getStock(){
     const response = await queryDatabase("SELECT * FROM stock;")
 
-    return response.map(changeBooleans)
+    console.log('stock', response.rows)
+
+    return response.rows.map(changeBooleans)
 }
 
 async function getCocktails(){
     const response = await queryDatabase("SELECT * FROM vw_cocktails;")
 
-    console.log('response:', response)
+    console.log('cocktails:', response.rows)
 
-    return response.map(parseCocktails)
+    return response.rows.map(parseCocktails)
 }
 
 async function saveCocktail(cocktail){
