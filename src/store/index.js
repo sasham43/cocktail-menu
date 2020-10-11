@@ -150,15 +150,6 @@ var getters = {
             })
         }
     },
-    // new_cocktail: state => {
-    //     return {
-    //         title: state.new_cocktail.title,
-    //         ingredients: state.new_cocktail.ingredients.map(c=>{
-    //             c.id = state.new_cocktail.ingredients.length
-    //             return c
-    //         })
-    //     }
-    // },
 }
 var actions = {
     setInStock: async function({ dispatch }, { type, in_stock }) {
