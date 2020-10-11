@@ -70,7 +70,7 @@ async function getCocktails(){
 
 async function saveCocktail(cocktail){
     try {
-        await runDatabase('INSERT INTO cocktails (name) VALUES ($1);', [cocktail.name])
+        await queryDatabase('INSERT INTO cocktails (name) VALUES ($1);', [cocktail.name])
 
         var new_cocktail = await queryDatabase('SELECT last_insert_rowid();')
         console.log('new cocktail', new_cocktail)
@@ -98,47 +98,47 @@ async function addIngredient(cocktail_id, ingredient){
 
     if(stock && stock.length > 0 && stock[0].id != undefined){
         console.log('got stock', stock[0].id)
-        await runDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, stock[0].id, ingredient.parts])
+        await queryDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, stock[0].id, ingredient.parts])
     } else {
         // insert stock
-        await runDatabase('INSERT INTO stock (type, in_stock) VALUES ($1, false);', [ingredient.name])
+        await queryDatabase('INSERT INTO stock (type, in_stock) VALUES ($1, false);', [ingredient.name])
         var new_stock = await queryDatabase('SELECT last_insert_rowid();')
         console.log('inserted new stock', new_stock)
         if (new_stock && new_stock.length > 0 && new_stock[0]['last_insert_rowid()'] != undefined) {
             var new_stock_id = new_stock[0]['last_insert_rowid()']
-            await runDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, new_stock_id, ingredient.parts])
+            await queryDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, new_stock_id, ingredient.parts])
         }
     }
 
 }
 
 async function addStock(bottle){
-    const response = await runDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name, bottle.type, bottle.in_stock])
+    const response = await queryDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name, bottle.type, bottle.in_stock])
 
     return response
 }
 
 async function editStock(bottle){
-    const response = await runDatabase("UPDATE stock SET in_stock = $1 WHERE type = $2;", [bottle.in_stock, bottle.type])
+    const response = await queryDatabase("UPDATE stock SET in_stock = $1 WHERE type = $2;", [bottle.in_stock, bottle.type])
 
     return response
 }
 
-function runDatabase(query, params={}){
-    return new Promise((resolve, reject)=>{
-        db.query(query, params, (err, data)=>{
-            if(err)
-                return reject(err)
+// function runDatabase(query, params={}){
+//     return new Promise((resolve, reject)=>{
+//         db.query(query, params, (err, data)=>{
+//             if(err)
+//                 return reject(err)
 
-            console.log('run data', data)
-            resolve(data)
-        })
-    })
-}
+//             console.log('run data', data)
+//             resolve(data)
+//         })
+//     })
+// }
 
 function queryDatabase(query, params={}){
     return new Promise((resolve, reject)=>{
-        db.all(query, params, (err, data)=>{
+        db.query(query, params, (err, data)=>{
             if(err)
                 return reject(err)
 
