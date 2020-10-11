@@ -3,6 +3,8 @@ const app = express()
 const port = process.env.PORT || 8000
 var db = require('./db')
 
+console.log('configuring api')
+
 app.get('/cocktails', async (req, res) => {
     var cocktails = await db.getCocktails()
     res.send(cocktails)

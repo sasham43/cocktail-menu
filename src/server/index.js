@@ -4,6 +4,8 @@ const express = require('express')
 const configureAPI = require('./configure')
 const app = express()
 
+console.log('starting express index server')
+
 const { PORT = 3000 } = process.env
 
 // API
