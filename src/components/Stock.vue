@@ -1,6 +1,6 @@
 <template>
     <div class="stock">
-        <div class="stock-item" v-for="bottle in stock" :key="bottle.id">
+        <div class="stock-item" v-for="bottle in sortedStock" :key="bottle.id">
             <StockBottle :bottle="bottle" />
         </div>
         <div class="add-stock">
@@ -16,6 +16,7 @@
 import {mapGetters, mapActions} from 'vuex'
 import StockBottle from './StockBottle'
 import AddStock from './AddStock'
+import _ from 'lodash'
 // import Corner from './Corner'
 
 export default {
@@ -30,6 +31,10 @@ export default {
     },
     computed: {
         ...mapGetters(['stock']),
+        sortedStock: function(){
+            return _.sortBy(this.stock, ['type'])
+            // return this.stock.
+        }
     },
     methods: {
         ...mapActions(['getStock', 'addStockBottle']),
