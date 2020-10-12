@@ -2,10 +2,7 @@
     <div class="part" :class="{marginRight: showLastPart}">
         <div class="part-wrapper" v-if="num_parts > 0" >
             <div v-for="part in partArray" :key="part.id" class="part-wheel">
-                <!-- p -->
             </div>
-            <!-- {{remainder}} -->
-            <!-- <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5, 'three-quarters-circle': remainder == 0.75}"> -->
             <div class="remainder-wheel" :class="{show: remainder,quarterCircleBottomRight: remainder == 0.25, halfCircleLeft: remainder == 0.5, threeQuartersRight: remainder == 0.75}">
 
             </div>

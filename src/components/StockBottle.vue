@@ -1,7 +1,6 @@
 <template>
     <div>
         <label class="checkbox-label" :for="checkbox_id">
-            <!-- <img class="corner-image" src="../assets/corner.svg" /> -->
             <Corner :in_stock="in_stock" />
         </label>
         <input class="checkbox" :id="checkbox_id" type="checkbox" v-model="in_stock" />

@@ -20,9 +20,6 @@ import {mapActions} from 'vuex'
 
 export default {
     title: 'AddIngredient',
-    // data: function(){
-    //     retu
-    // },
     props: {
         ingredient: Object
     },
@@ -32,7 +29,6 @@ export default {
         },
         partLength: function(){
             return 1
-            // return this.ingredients.filter(i=>i.parts > 0).length
         },
         ingredient_name: {
             get(){
@@ -88,7 +84,6 @@ export default {
 
 @media(max-width: 1000px){
     .add-ingredient {
-        /* grid-template-columns: 1fr; */
         grid-template-columns: 40% 60%;
         grid-template-areas: 
             "ingredient ingredient"

@@ -3,17 +3,6 @@
         <div @click="toggleMenu()" class="title-text">
             Crump Cocktails
         </div> 
-        <!-- <div class="bg-container">
-
-            <div class="bg">
-                bg
-            </div>
-
-            <div class="bg-link">
-                link
-            </div>
-
-        </div> -->
         <Menu class="menu" :hide="hide_menu" />           
     </div>
 </template>

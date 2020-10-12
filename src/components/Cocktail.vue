@@ -50,7 +50,6 @@ export default {
 .cocktail {
     margin: 12px 0;
     display: grid;
-    /* grid-template-columns: 25% 25% 25% 25%; */
     grid-template-areas:
         "name parts"
         "ingredients ingredients"

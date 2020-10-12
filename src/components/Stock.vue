@@ -5,23 +5,7 @@
         </div>
         <div class="add-stock">
             <img class="bracket-img" @click="toggleAddStock()" src="../assets/bracket.svg" />
-            <!-- <button @click="toggleAddStock()" class="add-stock-button">
-                Add Stock
-            </button>
-            <img class="bracket-img" src="../assets/bracket.svg" /> -->
             <div v-if="show_add_stock" class="add-stock-form">
-                <!-- <label class="checkbox-label add-stock-icon" for="stock_checkbox">
-                    <Corner :in_stock="in_stock" />
-                    <div class="in-stock-label">
-                        In Stock
-                    </div>
-                </label> -->
-                <!-- <input class="checkbox" id="stock_checkbox" type="checkbox" v-model="in_stock" />
-                <input class="add-stock-type" v-model="type" type="text" placeholder="Type..." />
-                <input class="add-stock-name" v-model="name" type="text" placeholder="Name..." />
-                <button @click="addBottle()" class="add-stock-button submit-stock-button">
-                    Add Bottle to Stock
-                </button> -->
                 <AddStock />
             </div>
         </div>
@@ -73,7 +57,6 @@ export default {
     },
     components: {
         StockBottle,
-        // Corner,
         AddStock,
     }
 }
@@ -82,7 +65,6 @@ export default {
 <style>
 .stock {
     font-size: 20px;
-    /* max-height: calc(100vh - 140px); */
     max-height: calc(100% - 200px);
     overflow: scroll;
     padding-bottom: 100px;

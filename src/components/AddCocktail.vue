@@ -4,11 +4,6 @@
             <label>Name</label>
             <input v-model="new_cocktail_name" type="text" />
         </div> 
-        <!-- {{new_cocktail.ingredients}} -->
-        <!-- <div v-for="ingredient in new_cocktail.ingredients" :key="ingredient.name">
-            {{ingredient.name}} - {{ingredient.parts}}
-            <AddIngredient :ingredient="ingredient" />
-        </div> -->
         <div class="ingredients" >
             <AddIngredient :ingredient="ingredient" v-for="ingredient in new_cocktail.ingredients" :key="ingredient.id" />
         </div>
