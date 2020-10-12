@@ -99,7 +99,7 @@ async function addIngredient(cocktail_id, ingredient){
     var stock = await queryDatabase('SELECT id FROM stock WHERE type = $1;', [ingredient.name])
     console.log('stock', stock, ingredient)
 
-    if(stock && stock.length > 0 && stock.rows[0].id != undefined){
+    if(stock.rows && stock.rows.length > 0 && stock.rows[0].id != undefined){
         console.log('got stock', stock.rows[0].id)
         await queryDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, stock[0].id, ingredient.parts])
     } else {
