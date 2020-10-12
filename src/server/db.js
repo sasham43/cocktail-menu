@@ -108,7 +108,7 @@ async function addIngredient(cocktail_id, ingredient){
         // var new_stock = await queryDatabase('SELECT last_insert_rowid();')
         console.log('inserted new stock', new_stock)
         // if (new_stock && new_stock.length > 0 && new_stock[0]['last_insert_rowid()'] != undefined) {
-            var new_stock_id = new_stock.rows[0]['id()']
+            var new_stock_id = new_stock.rows[0]['id']
             await queryDatabase('INSERT INTO ingredients (cocktail_id, stock_id, parts) VALUES ($1, $2, $3);', [cocktail_id, new_stock_id, ingredient.parts])
         // }
     }
