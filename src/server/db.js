@@ -127,6 +127,13 @@ async function editStock(bottle){
     return response
 }
 
+async function deleteCocktail(id){
+    await queryDatabase("DELETE FROM ingredients WHERE cocktail_id = $1", [id])
+    var response = await queryDatabase("DELETE FROM cocktails WHERE id = $1;", [id])
+
+    return response
+}
+
 // function runDatabase(query, params={}){
 //     return new Promise((resolve, reject)=>{
 //         db.query(query, params, (err, data)=>{
@@ -175,4 +182,5 @@ module.exports = {
     addStock,
     editStock,
     saveCocktail,
+    deleteCocktail,
 }

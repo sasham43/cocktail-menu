@@ -27,6 +27,15 @@ app.post('/cocktails', async (req, res)=>{
     }
 })
 
+app.delete('/cocktails/:id', async (req, res)=>{
+    try {
+        await db.deleteCocktail(req.params.id)
+    } catch(error){
+        res.status(500).send({error})
+    }
+    return res.sendStatus(200)
+})
+
 app.get('/stock', async (req, res)=>{
     var stock = await db.getStock()
     res.send(stock)

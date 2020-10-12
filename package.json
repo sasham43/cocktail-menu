@@ -24,6 +24,7 @@
     "pg": "^8.4.1",
     "sqlite3": "^5.0.0",
     "vue": "^2.6.11",
+    "vue-long-click": "0.0.4",
     "vue-router": "^3.4.3",
     "vue-template-compiler": "^2.6.11",
     "vuex": "^3.5.1"

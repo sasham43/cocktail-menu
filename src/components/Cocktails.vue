@@ -1,7 +1,11 @@
 <template>
     <div class="cocktails">
-        <div v-for="cocktail in cocktails" :key="cocktail.name" >
-            <Cocktail :name="cocktail.name" :ingredients="cocktail.ingredients" />
+        <div class="cocktail-container" v-for="cocktail in cocktails" :key="cocktail.name" >
+            <!-- {{cocktail.show_delete}} -->
+            <!-- <button @click="deleteCocktail(cocktail.id)" v-if="cocktail.show_delete" class="delete-button">
+                <img id="lr" class="remove-icon" src="../assets/remove.svg" />
+            </button> -->
+            <Cocktail :name="cocktail.name" :id="cocktail.id" :ingredients="cocktail.ingredients" />
         </div>
         <div class="add-cocktail">
             <router-link to="/add-cocktails">
@@ -14,6 +18,7 @@
 <script>
 import Cocktail from './Cocktail.vue'
 import {mapGetters, mapActions} from 'vuex'
+import Vue from 'vue'
 
 export default {
     name: 'Cocktails',
@@ -26,7 +31,14 @@ export default {
         ...mapGetters(['stock', 'cocktails']),
         ingredientsInStock: function(){
             return this.stock.filter(s=>s.in_stock)
-        }
+        },
+        // mappedCocktails: function(){
+        //     return this.cocktails.map(c=>{
+        //         // c.show_delete = false
+        //         Vue.set(c, 'show_delete', false)
+        //         return c
+        //     })
+        // }
     },
     methods: {
         ...mapActions(['getCocktails']),
@@ -35,6 +47,12 @@ export default {
             if(!this.show_add_cocktails){
                 this.getCocktails()
             }
+        },
+        longClick: function(cocktail){
+            console.log('long click', cocktail)
+            // cocktail.show_delete = !cocktail.show_delete
+            Vue.set(cocktail, 'show_delete', true)
+            // Vue.set(cocktail, 'show_delete', !cocktail.show_delete)
         }
     },
     created(){
@@ -42,6 +60,7 @@ export default {
     },
     components: {
         Cocktail,
+        // longClickDirective,
     }
 }
 </script>

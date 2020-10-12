@@ -196,6 +196,11 @@ var actions = {
     },
     updateNewCocktail({commit}, name){
         commit('updateNewCocktail', name)
+    },
+    async deleteCocktail({dispatch}, id){
+        await axios.delete(`/api/cocktails/${id}`)
+
+        dispatch('getCocktails')
     }
 }
 var mutations = {

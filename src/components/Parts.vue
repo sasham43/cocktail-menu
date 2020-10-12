@@ -23,7 +23,6 @@ export default {
     computed: {
         partArray: function(){
             var parts = []
-            console.log('num parts', this.num_parts)
             var num = 0
             if(this.num_parts.toString().includes('.')){
                 num = Number(this.num_parts.toString().split('.')[0])
@@ -39,10 +38,7 @@ export default {
         },
         remainder: function(){
             if(this.num_parts.toString().includes('.')){
-                // var push = false
-                // var remainder_array = []
                 var remainder = this.num_parts.toString().split('.')[1]
-                // console.log('remainder array', remainder_array, this.num_parts.toString().split('.'))
                 var parsed = parseFloat(`.${remainder}`)
                 return parsed
             } else {

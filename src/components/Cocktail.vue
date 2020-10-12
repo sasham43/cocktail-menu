@@ -1,6 +1,11 @@
 <template>
     <div class="cocktail">
-        <div class="name">{{name}}</div>
+        <div class="name"  v-longclick="() => longClick()">
+            <span>{{name}}</span>
+            <button @click="deleteCocktail(id)" v-if="show_delete" class="delete-button">
+                <img id="lr" class="remove-icon" src="../assets/remove.svg" />
+            </button>
+        </div>
 
         <div class="parts">
             <div v-for="(ingredient, index) in ingredients" :key="ingredient.name">
@@ -18,13 +23,19 @@
 
 <script>
 import Parts from './Parts.vue'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
     name: 'Cocktail',
     props: {
+        id: Number,
         name: String,
-        ingredients: Array
+        ingredients: Array,
+    },
+    data: function(){
+        return {
+            show_delete: false
+        }
     },
     computed: {
         ...mapGetters(['stock']),
@@ -36,8 +47,12 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['deleteCocktail']),
         inStock: function(name){
             return this.stock.filter(s=>s.in_stock).map(s=>s.type).includes(name)
+        },
+        longClick: function(){
+            this.show_delete = !this.show_delete
         }
     },
     components: {
@@ -79,6 +94,19 @@ export default {
 }
 .inStock {
     color: black;
+}
+
+.delete-button {
+    background: inherit;
+    border: none;
+    position: absolute;
+}
+.remove-icon {
+    width: 50px;
+    height: 50px;
+}
+.cocktail-container {
+    position: relative;
 }
 
 @media (max-width: 1000px){
