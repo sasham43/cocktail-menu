@@ -97,7 +97,7 @@ async function saveCocktail(cocktail){
 
 async function addIngredient(cocktail_id, ingredient){
     var stock = await queryDatabase('SELECT id FROM stock WHERE type = $1;', [ingredient.name])
-    console.log('stock', stock, ingredient)
+    console.log('stock', stock.rows, ingredient)
 
     if(stock.rows && stock.rows.length > 0 && stock.rows[0].id != undefined){
         console.log('got stock', stock.rows[0].id)
