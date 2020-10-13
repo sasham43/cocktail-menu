@@ -107,6 +107,7 @@ export default {
 .part-select {
     border: solid 1px #eee;
     padding: 10px 40px;
+    min-width: 158px;
     -webkit-appearance: none;
 }
 
