@@ -9,7 +9,30 @@
         </div>
         <div class="parts-ingredient">
             <label>Parts</label>
-            <input v-model="ingredient_parts" step="0.25" type="number" pattern="\d*" /> 
+            <select class="part-select" v-model="ingredient_parts">
+                <option>0</option>
+                <option>0.25</option>
+                <option>0.5</option>
+                <option>0.75</option>
+                <option>1</option>
+                <option>1.25</option>
+                <option>1.5</option>
+                <option>1.75</option>
+                <option>2</option>
+                <option>2.25</option>
+                <option>2.5</option>
+                <option>2.75</option>
+                <option>3</option>
+                <option>3.25</option>
+                <option>3.5</option>
+                <option>3.75</option>
+                <option>4</option>
+                <option>4.25</option>
+                <option>4.5</option>
+                <option>4.75</option>
+            </select>
+            <!-- <input v-model="ingredient_parts" step="0.25" type="tel"/>  -->
+            <!-- <input v-model="ingredient_parts" step="0.25" type="number" pattern="\d*" />  -->
         </div>
     </div>
 </template> 
@@ -80,6 +103,10 @@ export default {
 }
 .parts-icon-container {
     align-self: center;
+}
+.part-select {
+    border: solid 1px #eee;
+    padding: 10px 40px;
 }
 
 @media(max-width: 1000px){
