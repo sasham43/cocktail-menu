@@ -8,13 +8,13 @@
         </div>
 
         <div class="parts">
-            <div v-for="(ingredient, index) in ingredients" :key="ingredient.name">
+            <div v-for="(ingredient, index) in sortedIngredients" :key="ingredient.name">
                 <Parts :num_parts="ingredient.parts" :index="index" :length="partLength" />                
             </div>
         </div>
             
         <div class="ingredients">
-            <div class="ingredient" v-for="ingredient in ingredients" :key="ingredient.name">
+            <div class="ingredient" v-for="ingredient in sortedIngredients" :key="ingredient.name">
                 <span class="ingredient-name" :class="{inStock: inStock(ingredient.name)}">{{ingredient.name}}</span>
             </div>
         </div>
@@ -24,6 +24,7 @@
 <script>
 import Parts from './Parts.vue'
 import {mapGetters, mapActions} from 'vuex'
+import _ from 'lodash'
 
 export default {
     name: 'Cocktail',
@@ -44,6 +45,18 @@ export default {
         },
         partLength: function(){
             return this.ingredients.filter(i=>i.parts > 0).length
+        },
+        sortedIngredients: function(){
+            return _.orderBy(this.ingredients, 'parts', 'desc')
+            // return this.ingredients.sort((a, b)=>{
+            //     if(a.parts > b.parts){
+            //         return 1
+            //     } else if (a.parts < b.parts){
+            //         return -1
+            //     } else {
+            //         return 0
+            //     }
+            // })
         }
     },
     methods: {
