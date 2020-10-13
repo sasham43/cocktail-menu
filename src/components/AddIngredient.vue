@@ -107,6 +107,7 @@ export default {
 .part-select {
     border: solid 1px #eee;
     padding: 10px 40px;
+    -webkit-appearance: none;
 }
 
 @media(max-width: 1000px){
