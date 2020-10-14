@@ -41,7 +41,7 @@ export default {
         // }
     },
     methods: {
-        ...mapActions(['getCocktails']),
+        ...mapActions(['getCocktails', 'getStock']),
         toggleAddCocktails(){
             this.show_add_cocktails = !this.show_add_cocktails
             if(!this.show_add_cocktails){
@@ -57,6 +57,7 @@ export default {
     },
     created(){
         this.getCocktails()
+        this.getStock()
     },
     components: {
         Cocktail,
