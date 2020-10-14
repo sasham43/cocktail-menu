@@ -4,10 +4,13 @@
             <StockBottle :bottle="bottle" />
         </div>
         <div class="add-stock">
-            <img class="bracket-img" @click="toggleAddStock()" src="../assets/bracket.svg" />
+            <!-- <img class="bracket-img" @click="toggleAddStock()" src="../assets/bracket.svg" />
             <div v-if="show_add_stock" class="add-stock-form">
                 <AddStock />
-            </div>
+            </div> -->
+            <router-link to="/add-stock">
+                <img class="bracket-img" src="../assets/bracket.svg" />
+            </router-link>
         </div>
     </div>
 </template>
@@ -15,7 +18,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import StockBottle from './StockBottle'
-import AddStock from './AddStock'
+// import AddStock from './AddStock'
 import _ from 'lodash'
 // import Corner from './Corner'
 
@@ -62,7 +65,7 @@ export default {
     },
     components: {
         StockBottle,
-        AddStock,
+        // AddStock,
     }
 }
 </script>
