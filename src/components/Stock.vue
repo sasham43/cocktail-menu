@@ -24,14 +24,14 @@ import _ from 'lodash'
 
 export default {
     name: 'Stock',
-    data: function(){
-        return {
-              in_stock: true,
-              name: '',
-              type: '',
-              show_add_stock: false,
-        }
-    },
+    // data: function(){
+    //     return {
+    //           in_stock: true,
+    //           name: '',
+    //           type: '',
+    //           show_add_stock: false,
+    //     }
+    // },
     computed: {
         ...mapGetters(['stock']),
         sortedStock: function(){
@@ -131,10 +131,15 @@ export default {
     height: 50px;
     vertical-align: middle;
 }
-.in-stock-label {
+@media (max-width: 1000px){
+    #app {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+}
+/* .in-stock-label {
     display: none;
 }
-
 
 @media (max-width: 1000px){
     #app {
@@ -144,7 +149,7 @@ export default {
 
     .add-stock-form {
         display: grid;
-        /* grid-template-columns: 10% 90%; */
+
         grid-template-columns: 1fr;
         grid-template-rows: 50px 50px 50px;
         grid-template-areas:
@@ -160,6 +165,6 @@ export default {
         display: inline-block;
     }
     
-}
+} */
 /* art deco icon by Olena Panasovska from the Noun Project */
 </style>
