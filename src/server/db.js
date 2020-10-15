@@ -72,7 +72,7 @@ async function getCocktails(){
 
 async function saveCocktail(cocktail){
     try {
-        var new_cocktail = await queryDatabase('INSERT INTO cocktails (name) VALUES ($1) RETURNING id;', [cocktail.name])
+        var new_cocktail = await queryDatabase('INSERT INTO cocktails (name) VALUES ($1) RETURNING id;', [cocktail.name.trim()])
 
         // var new_cocktail = await queryDatabase('SELECT last_insert_rowid();') // needs to change
         // var new_cocktail = 
@@ -116,7 +116,7 @@ async function addIngredient(cocktail_id, ingredient){
 }
 
 async function addStock(bottle){
-    const response = await queryDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name, bottle.type, bottle.in_stock])
+    const response = await queryDatabase("INSERT INTO stock (name, type, in_stock) VALUES ($1, $2, $3);", [bottle.name.trim(), bottle.type.trim(), bottle.in_stock])
 
     return response
 }
