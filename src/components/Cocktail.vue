@@ -48,15 +48,6 @@ export default {
         },
         sortedIngredients: function(){
             return _.orderBy(this.ingredients, 'parts', 'desc')
-            // return this.ingredients.sort((a, b)=>{
-            //     if(a.parts > b.parts){
-            //         return 1
-            //     } else if (a.parts < b.parts){
-            //         return -1
-            //     } else {
-            //         return 0
-            //     }
-            // })
         }
     },
     methods: {
@@ -134,6 +125,9 @@ export default {
     .parts,
     .ingredient {
         text-align: left;
+    }
+    .parts {
+        width: 100%;
     }
 }
 

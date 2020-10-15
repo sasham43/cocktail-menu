@@ -1,10 +1,6 @@
 <template>
     <div class="cocktails">
         <div class="cocktail-container" v-for="cocktail in cocktails" :key="cocktail.name" >
-            <!-- {{cocktail.show_delete}} -->
-            <!-- <button @click="deleteCocktail(cocktail.id)" v-if="cocktail.show_delete" class="delete-button">
-                <img id="lr" class="remove-icon" src="../assets/remove.svg" />
-            </button> -->
             <Cocktail :name="cocktail.name" :id="cocktail.id" :ingredients="cocktail.ingredients" />
         </div>
         <div class="add-cocktail">
@@ -61,7 +57,6 @@ export default {
     },
     components: {
         Cocktail,
-        // longClickDirective,
     }
 }
 </script>
